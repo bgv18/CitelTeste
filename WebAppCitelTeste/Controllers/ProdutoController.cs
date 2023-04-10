@@ -57,7 +57,6 @@ namespace WebAppCitelTeste.Controllers
             return View(produto);
         }
 
-        //Metodo GET de inclusão de registro da entidade Categoria na API
         public async Task<IActionResult> AdicionarProduto()
         {
             List<Categoria> listaCategorias = new List<Categoria>();
@@ -75,7 +74,7 @@ namespace WebAppCitelTeste.Controllers
 
             return View();
         }
-        //Metodo POST de inclusão de registro da entidade Categoria na API
+
         [HttpPost]
         public async Task<IActionResult> AdicionarProduto(Produto produto)
         {
@@ -92,9 +91,9 @@ namespace WebAppCitelTeste.Controllers
                     produtoRecebido = JsonConvert.DeserializeObject<Produto>(apiResponse);
                 }
             }
+            TempData["Mensagem"] = "Produto adicionado com sucesso.";
             return View(produtoRecebido);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> EditarProduto(int id)
@@ -144,6 +143,7 @@ namespace WebAppCitelTeste.Controllers
                     produtoRecebido = JsonConvert.DeserializeObject<Produto>(apiResponse);
                 }
             }
+            TempData["Mensagem"] = "Produto alterado com sucesso.";
             return View(produtoRecebido);
         }
 

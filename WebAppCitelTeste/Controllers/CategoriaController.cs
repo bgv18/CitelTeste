@@ -1,6 +1,7 @@
 ﻿using CitelTeste.WebAppCitelTeste.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -38,6 +39,11 @@ namespace WebAppCitelTeste.Controllers
             }
             return View(categoria);
         }
+        [HttpGet]
+        public async Task<IActionResult> AdicionarCategoria()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> AdicionarCategoria(Categoria categoria)
@@ -55,6 +61,7 @@ namespace WebAppCitelTeste.Controllers
                     categoriaRecebida = JsonConvert.DeserializeObject<Categoria>(apiResponse);
                 }
             }
+            TempData["Mensagem"] = "Categoria adicionada com sucesso.";
             return View(categoriaRecebida);
         }
 
@@ -83,7 +90,7 @@ namespace WebAppCitelTeste.Controllers
                 var content = new MultipartFormDataContent();
                 content.Add(new StringContent(categoria.Id.ToString()), "Id");
                 content.Add(new StringContent(categoria.DataCadastro.ToString()), "DataCadastro");
-                content.Add(new StringContent(categoria.Descricao), "Descricao");
+                content.Add(new StringContent(categoria.Nome), "Nome");
 
                 using (var response = await httpClient.PutAsync(baseUrl + "/" + categoria.Id, content))
                 {
@@ -92,6 +99,7 @@ namespace WebAppCitelTeste.Controllers
                     categoriaRecebida = JsonConvert.DeserializeObject<Categoria>(apiResponse);
                 }
             }
+            TempData["Mensagem"] = "Categoria alterada com sucesso.";
             return View(categoriaRecebida);
         }
 

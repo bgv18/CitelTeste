@@ -17,11 +17,10 @@ namespace CitelTeste.WebAppCitelTeste.Models
 
         public decimal Preco { get; set; }
 
-        public DateTime dataCriacao { get; set; }
+        public DateTime? dataCriacao { get; set; }
 
-        public int? CategoriaId { get; }
+        public int? CategoriaId { get; set; }
         
-        [JsonIgnore]
         public Categoria? Categoria { get; set; }
     }
 }

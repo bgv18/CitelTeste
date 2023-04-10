@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<CitelTeste.WebAppCitelTeste.Models.Produto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Produto";
 }
 
 <h1>Lista de Produtos</h1>
-</br>
+
 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
     <a class="btn btn-primary" role="button" asp-controller="Produto" asp-action="AdicionarProduto">Adicionar produto</a>
 </div>
+
 <table class="table">
     <thead>
         <tr>
@@ -71,10 +72,9 @@
                     }
                 </td>
                 <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" class="btn btn-secondary" asp-controller="Produto" asp-action="EditarProduto" asp-route-data="item.Id">Editar</a>
-                        <a role="button" class="btn btn-danger" id="btnExcluir" asp-controller="Produto" asp-action="ExcluirProduto">Excluir</a>
-                    </div>
+                    @Html.ActionLink("Editar", "EditarProduto", new { id=item.Id }, new { @class = "btn btn-secondary" })
+                    @Html.ActionLink("Detalhes", "ConsultarProdutos", new { id=item.Id}, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Deletar", "ExcluirProduto", new { id=item.Id  }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

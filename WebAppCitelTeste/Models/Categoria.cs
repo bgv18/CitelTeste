@@ -4,7 +4,6 @@ using System.Text.Json.Serialization;
 
 namespace CitelTeste.WebAppCitelTeste.Models
 {
-    [Table("Categorias")]
     public class Categoria
     {
         [Key]
@@ -12,7 +11,7 @@ namespace CitelTeste.WebAppCitelTeste.Models
 
         [Required(ErrorMessage = "Nome é obrigatório")]
         [StringLength(maximumLength: 50, ErrorMessage = "máximo 50 caractere.")]
-        public string? Descricao { get; set; }
+        public string? Nome { get; set; }
 
         public DateTime DataCadastro { get; set; } = DateTime.Now;
 
