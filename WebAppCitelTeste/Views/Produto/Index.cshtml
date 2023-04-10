@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CitelTeste.WebAppCitelTeste.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Produtos</h1>
+</br>
+<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    <a class="btn btn-primary" role="button" asp-controller="Produto" asp-action="AdicionarProduto">Adicionar produto</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saldo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataCriacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoriaId)
+            </th>
+            <th>
+                Info
+            </th>
+            <th>
+                Opcoes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Saldo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dataCriacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoriaId)
+                </td>
+                <td>
+                    @if (item.Saldo > 0)
+                    {
+                        <span class="text-bg-success">Em estoque</span>
+                    }
+                    else
+                    {
+                        <span class="text-bg-danger">Indisponivel</span>
+                    }
+                </td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-secondary" asp-controller="Produto" asp-action="EditarProduto" asp-route-data="item.Id">Editar</a>
+                        <a role="button" class="btn btn-danger" id="btnExcluir" asp-controller="Produto" asp-action="ExcluirProduto">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
