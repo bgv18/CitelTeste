@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CitelTesteApi.Migrations
 {
     /// <inheritdoc />
-    public partial class CriandoTabelasBanco : Migration
+    public partial class CriandoTabelas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categorias",
+                name: "Categoria",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -22,7 +22,7 @@ namespace CitelTesteApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categorias", x => x.Id);
+                    table.PrimaryKey("PK_Categoria", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -35,23 +35,23 @@ namespace CitelTesteApi.Migrations
                     Saldo = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     dataCriacao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CategoriaId1 = table.Column<int>(type: "int", nullable: false)
+                    CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Produto", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Produto_Categorias_CategoriaId1",
-                        column: x => x.CategoriaId1,
-                        principalTable: "Categorias",
+                        name: "FK_Produto_Categoria_CategoriaId1",
+                        column: x => x.CategoriaId,
+                        principalTable: "Categoria",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produto_CategoriaId1",
+                name: "IX_Produto_CategoriaId",
                 table: "Produto",
-                column: "CategoriaId1");
+                column: "CategoriaId");
         }
 
         /// <inheritdoc />
@@ -61,7 +61,7 @@ namespace CitelTesteApi.Migrations
                 name: "Produto");
 
             migrationBuilder.DropTable(
-                name: "Categorias");
+                name: "Categoria");
         }
     }
 }

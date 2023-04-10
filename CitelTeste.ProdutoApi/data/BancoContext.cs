@@ -12,6 +12,6 @@ namespace CitelTeste.ProdutoApi.data
         }
 
         public DbSet<Produto> Produto { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
     }
 }

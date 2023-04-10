@@ -20,9 +20,8 @@ namespace CitelTeste.ProdutoApi.Models
 
         public DateTime dataCriacao { get; set; }
 
-        public int CategoriaId { get; }
+        public int? CategoriaId { get; set; }
         
-        [JsonIgnore]
-        public Categoria Categoria { get; set; }
+        public virtual Categoria? Categoria { get; set; }
     }
 }

@@ -20,15 +20,15 @@ namespace CitelTesteApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Categoria>>> GetCategorias()
+        public async Task<ActionResult<IEnumerable<Categoria>>> GetCategoria()
         {
-            return await _context.Categorias.ToListAsync();
+            return await _context.Categoria.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Categoria>> GetCategoria(int id)
         {
-            var categoria = await _context.Categorias.FindAsync(id);
+            var categoria = await _context.Categoria.FindAsync(id);
 
             if (categoria == null)
             {
@@ -41,7 +41,7 @@ namespace CitelTesteApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Categoria>> PostCategoria(Categoria categoria)
         {
-            _context.Categorias.Add(categoria);
+            _context.Categoria.Add(categoria);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCategoria", new { id = categoria.Id }, categoria);
@@ -68,13 +68,13 @@ namespace CitelTesteApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategoria(int id)
         {
-            var categoria = await _context.Categorias.FindAsync(id);
+            var categoria = await _context.Categoria.FindAsync(id);
             if (categoria == null)
             {
                 return NotFound();
             }
 
-            _context.Categorias.Remove(categoria);
+            _context.Categoria.Remove(categoria);
             await _context.SaveChangesAsync();
 
             return NoContent();

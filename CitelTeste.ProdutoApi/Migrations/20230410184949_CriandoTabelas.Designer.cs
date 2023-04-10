@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CitelTesteApi.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20230410051501_CriandoTabelasBanco")]
-    partial class CriandoTabelasBanco
+    [Migration("20230410184949_CriandoTabelas")]
+    partial class CriandoTabelas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,23 +75,18 @@ namespace CitelTesteApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorias");
+                    b.ToTable("Categoria");
                 });
 
             modelBuilder.Entity("CitelTeste.ProdutoApi.Models.Produto", b =>
                 {
                     b.HasOne("CitelTesteApi.Models.Categoria", "Categoria")
-                        .WithMany("Produtos")
+                        .WithMany()
                         .HasForeignKey("CategoriaId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Categoria");
-                });
-
-            modelBuilder.Entity("CitelTesteApi.Models.Categoria", b =>
-                {
-                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }
