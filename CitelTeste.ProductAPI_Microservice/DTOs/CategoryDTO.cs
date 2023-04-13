@@ -7,7 +7,7 @@ namespace CitelTeste.ProductAPI_Microservice.DTOs
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "The Name is Required")]
+        [Required(ErrorMessage = "Nome obrigatorio")]
         [MinLength(3)]
         [MaxLength(100)]
         public string? Name { get; set; }
